@@ -58,7 +58,7 @@ EMAIL_TOOL = {
             },
             "body": {
                 "type": "string",
-                "description": "Email body: max 100 words, conversational, ends with a clear call to action. No placeholder text.",
+                "description": "Email body: max 100 words, conversational, ends with a clear call to action. Do NOT start with the customer's name or a greeting — jump straight into the message. No placeholder text.",
             },
         },
         "required": ["subject", "preheader", "body"],
@@ -169,7 +169,7 @@ Call write_email with subject, preheader, and body."""
     message = client.messages.create(
         model="claude-haiku-4-5-20251001",
         max_tokens=600,
-        system="You are a B2C email copywriter for a fashion brand. Always call the write_email tool.",
+        system="You are a B2C email copywriter for a fashion brand. Always write in German. Always call the write_email tool.",
         tools=[EMAIL_TOOL],
         tool_choice={"type": "tool", "name": "write_email"},
         messages=[{"role": "user", "content": prompt}],
